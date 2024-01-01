@@ -5,10 +5,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document
+@Document("TestScores")
 public class TestScoreEntity {
     @Id
-    private String id;
+    private String _id;
     private String username;
     private String score;
     private String examType;

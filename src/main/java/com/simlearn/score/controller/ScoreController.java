@@ -16,13 +16,13 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
-    @PostMapping("/save")
+    @PostMapping("/score")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveScore(@RequestBody TestScoreDto testScoreDto) {
         scoreService.saveScore(testScoreDto);
     }
 
-    @GetMapping("/student/find/{username}")
+    @GetMapping("/score/find/{username}")
     public List<TestScoreDto> getAllTestScoreForStudent(@PathVariable String username) {
         return scoreService.findScoreForStudent(username);
     }
