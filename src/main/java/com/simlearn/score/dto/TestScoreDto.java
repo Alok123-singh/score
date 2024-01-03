@@ -9,5 +9,6 @@ public class TestScoreDto {
     private String email;
     private String score;
     private String examType;
+    private String courseCode;
     private String time;
 }

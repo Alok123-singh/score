@@ -27,5 +27,8 @@ public class ScoreController {
         return scoreService.findScoreForStudent(email);
     }
 
-    //public List<TestScoreDto> getAllStudentsScore() {}
+    @GetMapping("/score/course/{coursecode}")
+    public List<TestScoreDto> getStudentsScoreForGame(@PathVariable String coursecode) {
+        return scoreService.findScoreForCourse(coursecode);
+    }
 }

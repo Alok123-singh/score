@@ -8,4 +8,5 @@ import java.util.List;
 public interface ScoreService {
     void saveScore(TestScoreDto testScoreDto);
     List<TestScoreDto> findScoreForStudent(String username);
+    List<TestScoreDto> findScoreForCourse(String courseCode);
 }

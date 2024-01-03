@@ -17,6 +17,7 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Autowired
     private ScoreRepository scoreRepository;
+
     @Override
     public void saveScore(TestScoreDto testScoreDto) {
         TestScoreEntity testScoreEntity = new TestScoreEntity();
@@ -27,8 +28,18 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     public List<TestScoreDto> findScoreForStudent(String email) {
-        List<TestScoreDto> scoreDtoList = new ArrayList<>();
         List<TestScoreEntity> testScoreEntityList = scoreRepository.findByEmail(email);
+        return createTestScoreDtoList(testScoreEntityList);
+    }
+
+    @Override
+    public List<TestScoreDto> findScoreForCourse(String courseCode) {
+        List<TestScoreEntity> testScoreEntityList = scoreRepository.findByCourseCode(courseCode);
+        return createTestScoreDtoList(testScoreEntityList);
+    }
+
+    private List<TestScoreDto> createTestScoreDtoList(List<TestScoreEntity> testScoreEntityList) {
+        List<TestScoreDto> scoreDtoList = new ArrayList<>();
         testScoreEntityList.stream().forEach(testScoreEntity -> {
             TestScoreDto testScoreDto = new TestScoreDto();
             BeanUtils.copyProperties(testScoreEntity, testScoreDto);
