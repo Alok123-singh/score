@@ -22,9 +22,9 @@ public class ScoreController {
         scoreService.saveScore(testScoreDto);
     }
 
-    @GetMapping("/score/find/{username}")
-    public List<TestScoreDto> getAllTestScoreForStudent(@PathVariable String username) {
-        return scoreService.findScoreForStudent(username);
+    @GetMapping("/score/find/{email}")
+    public List<TestScoreDto> getAllTestScoreForStudent(@PathVariable String email) {
+        return scoreService.findScoreForStudent(email);
     }
 
     //public List<TestScoreDto> getAllStudentsScore() {}

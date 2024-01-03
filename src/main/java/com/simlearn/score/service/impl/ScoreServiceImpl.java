@@ -26,9 +26,9 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public List<TestScoreDto> findScoreForStudent(String username) {
+    public List<TestScoreDto> findScoreForStudent(String email) {
         List<TestScoreDto> scoreDtoList = new ArrayList<>();
-        List<TestScoreEntity> testScoreEntityList = scoreRepository.findByUsername(username);
+        List<TestScoreEntity> testScoreEntityList = scoreRepository.findByEmail(email);
         testScoreEntityList.stream().forEach(testScoreEntity -> {
             TestScoreDto testScoreDto = new TestScoreDto();
             BeanUtils.copyProperties(testScoreEntity, testScoreDto);

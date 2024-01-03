@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TestScoreEntity {
     @Id
     private String _id;
-    private String username;
+    private String email;
     private String score;
     private String examType;
     private String time;

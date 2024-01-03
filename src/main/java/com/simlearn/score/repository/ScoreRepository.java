@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ScoreRepository extends MongoRepository<TestScoreEntity, String> {
-    List<TestScoreEntity> findByUsername(@Param("username") String username);
+    List<TestScoreEntity> findByEmail(@Param("email") String email);
 }
