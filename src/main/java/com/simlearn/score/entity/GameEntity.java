@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Games")
 public class GameEntity {
     String _id;
+    String gameId;
     String name;
     String type;
 }

@@ -2,9 +2,14 @@ package com.simlearn.score.service.impl;
 
 import com.simlearn.score.dto.GameDto;
 import com.simlearn.score.entity.GameEntity;
+import com.simlearn.score.exception.GameAlreadyExistException;
 import com.simlearn.score.service.GameService;
+import io.netty.util.internal.ObjectUtil;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +26,10 @@ public class GameServiceImpl implements GameService {
         GameEntity gameEntity = new GameEntity();
         gameEntity.setName(gameDto.getName());
         gameEntity.setType(gameDto.getType());
+        gameEntity.setGameId(gameDto.getGameId());
+        if (ObjectUtils.isNotEmpty(mongoTemplate.find(new Query(Criteria.where("gameId").is(gameDto.getGameId())), GameEntity.class))) {
+            throw new GameAlreadyExistException("There is already a game with this gameId");
+        }
         mongoTemplate.save(gameEntity);
     }
 
@@ -36,7 +45,7 @@ public class GameServiceImpl implements GameService {
             GameDto gameDto = new GameDto();
             gameDto.setName(gameEntity.getName());
             gameDto.setType(gameEntity.getType());
-            gameDto.set_id(gameEntity.get_id());
+            gameDto.setGameId(gameEntity.getGameId());
             gameDtos.add(gameDto);
         });
         return gameDtos;
